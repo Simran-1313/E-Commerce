@@ -42,20 +42,7 @@ const Navbar = () => {
           <div ><h1 className="font-[700] text-[24px] font-poppins">Exclusive</h1></div>
           
        
-          {!isMdScreen && (
-            <div className="flex items-center md:hidden">
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-black focus:outline-none"
-              >
-                {isMenuOpen ? (
-                  <XMarkIcon className="w-6 h-6" />
-                ) : (
-                  <Bars3Icon className="w-6 h-6" />
-                )}
-              </button>
-            </div>
-          )}
+          
           
    
           
@@ -71,9 +58,22 @@ const Navbar = () => {
               <Link to={"/cart"}><img height={32} width={32} src={cartIcon} alt="Cart" /></Link>
               <Link to={"/MyAccount"}><User /></Link>
             </div>
-          
+            {!isMdScreen && (
+            <div className="flex items-center md:hidden">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="text-black focus:outline-none"
+              >
+                {isMenuOpen ? (
+                  <XMarkIcon className="w-6 h-6" />
+                ) : (
+                  <Bars3Icon className="w-6 h-6" />
+                )}
+              </button>
+            </div>
+          )}
         </div>
-
+        
         
         <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'} absolute z-10 top-full left-0 w-full bg-white shadow-lg`}>
           <div className="flex flex-col p-4">
@@ -83,7 +83,9 @@ const Navbar = () => {
             <Link  to='/signup' className="py-2" >Sign Up'</Link>
           </div>
         </div>
+        
       </div>
+     
       <div className="w-full mt-[16px] h-[0.5px] bg-black"></div>
     </>
   );

@@ -13,7 +13,7 @@ const SearchInput = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, [window.innerWidth]);
   return (
-    <div className="relative flex max-w-[243px]  md:w-[100px] lg:w-[210px] xl:w-[250px]  items-center">
+    <div className="relative flex max-w-[243px] w-[70px] md:w-[100px] lg:w-[210px] xl:w-[250px]  items-center">
       <input
         className="bg-[#F5F5F5] lg:placeholder:text-[14px]    pt-[7px]  pb-[7px] pl-[12px] rounded w-full "
         type="text"
