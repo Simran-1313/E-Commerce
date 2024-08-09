@@ -1,0 +1,134 @@
+[
+    {
+      "id": 1,
+      "title": "Sample Product 1",
+      "price": "49.99",
+      "images": "",
+      "rating":{
+        "rate":4.5,
+        "count":80
+      },
+      "discount": 40,
+      "isDiscount": true,
+      "isNew": false
+      
+    },
+    {
+      "id": 2,
+      "title": "Sample Product 2",
+      "price": "69.99",
+      "images": "",
+      "rating": {
+        "rate": 4.2,
+        "count":120
+      },
+      "discount": 30,
+      "isDiscount": true,
+      "isNew": true
+    },
+    {
+      "id": 3,
+      "title": "Sample Product 3",
+      "price": "89.99",
+      "images": "",
+      "rating": {
+        "rate": 3.8,
+        "count":230
+      },
+      "discount": 50,
+      "isDiscount": true,
+      "isNew": false
+    },
+    {
+      "id": 4,
+      "title": "Sample Product 4",
+      "price": "29.99",
+      "images": "",
+      "rating": {
+        "rate":3.6,
+        "count":233
+      },
+      "discount": 20,
+      "isDiscount": true,
+      "isNew": false
+    },
+    {
+      "id": 5,
+      "title": "Sample Product 5",
+      "price": "59.99",
+      "images": "",
+      "rating": {
+        "rate":4.9,
+        "count":270
+      },
+      "discount": 35,
+      "isDiscount": true,
+      "isNew": true
+    },
+    {
+      "id": 6,
+      "title": "Sample Product 6",
+      "price": "79.99",
+      "images": "",
+      "rating": {
+        "rate": 4.2,
+        "count":212
+      },
+      "discount": 25,
+      "isDiscount": true,
+      "isNew": true
+    },
+    {
+      "id": 7,
+      "title": "Sample Product 7",
+      "price": "99.99",
+      "images": "",
+      "rating": {
+        "rate": 3.9,
+        "count": 133
+      },
+      "discount": 45,
+      "isDiscount": true,
+      "isNew": false
+    },{
+      "id": 5,
+      "title": "Sample Product 5",
+      "price": "59.99",
+      "images": "",
+      "rating": {
+        "rate": 5,
+        "count": 24
+      },
+      "discount": 35,
+      "isDiscount": true,
+      "isNew": true
+
+    },
+    {
+      "id": 6,
+      "title": "Sample Product 6",
+      "price": "79.99",
+      "images": "",
+      "rating": {
+        "rate": 3.8,
+        "count":320
+      },
+      "discount": 25,
+      "isDiscount": true,
+      "isNew": true
+    },
+    {
+      "id": 7,
+      "title": "Sample Product 7",
+      "price": "99.99",
+      "images": "",
+      "rating": {
+        "rate": 4.1,
+        "count":127
+      },
+      "discount": 45,
+      "isDiscount": true,
+      "isNew": false
+
+    }
+  ]

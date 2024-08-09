@@ -1,0 +1,14 @@
+   .AboutCarousal .swiper-pagination-bullet {
+    width: 14px;
+    height: 14px;
+    background-color: #777777; 
+  }
+  
+  .AboutCarousal .swiper-pagination-bullet-active {
+    width: 14px;
+    height: 14px;
+    background-color: #ff004c;
+    border: 2px solid gray;
+  
+   
+  }
