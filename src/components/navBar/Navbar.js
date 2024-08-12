@@ -24,7 +24,7 @@ const CustomLink = ({ to, className = "", title }) => {
 const Navbar = () => {
   const [isMdScreen, setIsMdScreen] = useState(window.innerWidth >= 850);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const location = useLocation()
   useEffect(() => {
     const handleResize = () => {
       setIsMdScreen(window.innerWidth >= 850);
@@ -33,6 +33,10 @@ const Navbar = () => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+  useEffect(()=>{
+    setIsMenuOpen(false);
+
+  },[location])
 
   return (
     <>
