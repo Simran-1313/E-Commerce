@@ -22,12 +22,12 @@ const CustomLink = ({ to, className = "", title }) => {
 };
 
 const Navbar = () => {
-  const [isMdScreen, setIsMdScreen] = useState(window.innerWidth >= 768);
+  const [isMdScreen, setIsMdScreen] = useState(window.innerWidth >= 850);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMdScreen(window.innerWidth >= 768);
+      setIsMdScreen(window.innerWidth >= 850);
     };
 
     window.addEventListener('resize', handleResize);
@@ -38,7 +38,21 @@ const Navbar = () => {
     <>
       <Banner />
       <div className="relative">
-        <div className={`flex bg-white  xl:px-[136px] lg:px-[70px] md:px-[40px] px-[20px] justify-between items-center mt-[40px]`}>
+        <div className={`flex bg-white  xl:px-[136px] lg:px-[70px] sm:px-[20px] md:px-[40px] px-[20px] justify-between items-center mt-[40px]`}>
+        {!isMdScreen && (
+            <div className="flex items-center ">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="text-black focus:outline-none"
+              >
+                {isMenuOpen ? (
+                  <XMarkIcon className="w-8 h-8 " />
+                ) : (
+                  <Bars3Icon className="w-8 h-8 " />
+                )}
+              </button>
+            </div>
+          )}
           <div ><h1 className="font-[700] text-[24px] font-poppins">Exclusive</h1></div>
           
        
@@ -53,34 +67,31 @@ const Navbar = () => {
               <CustomLink title='Sign Up' to='/signup' />
             </div>
             <div className="flex gap-[16px] ">
-              <SearchInput />
-              <a><img height={32} width={32} src={likedIcon} alt="Wishlist" /></a>
+              { isMdScreen?
+                <>
+                <SearchInput placeholder="Whats you looking for ?" className="max-w-[243px] lg:w-[210px] xl:w-[250px]  " />
+                <a><img height={32} width={32} src={likedIcon} alt="Wishlist" /></a>
               <Link to={"/cart"}><img height={32} width={32} src={cartIcon} alt="Cart" /></Link>
-              <Link to={"/MyAccount"}><User /></Link>
+              <Link to={"/MyAccount"}><User /></Link></>
+                : <SearchInput  className=" w-[200px]" placeholder="Whats you looking for" />
+              }
+              
             </div>
-            {!isMdScreen && (
-            <div className="flex items-center md:hidden">
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-black focus:outline-none"
-              >
-                {isMenuOpen ? (
-                  <XMarkIcon className="w-6 h-6" />
-                ) : (
-                  <Bars3Icon className="w-6 h-6" />
-                )}
-              </button>
-            </div>
-          )}
+           
         </div>
         
         
-        <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'} absolute z-10 top-full left-0 w-full bg-white shadow-lg`}>
-          <div className="flex flex-col p-4">
+        <div className={` ${isMenuOpen ? 'block' : 'hidden'} absolute z-10 top-full left-0 w-full bg-white shadow-lg`}>
+          <div className="flex flex-col  p-4">
+         
             <Link  to='/' className="py-2" >Home</Link>
             <Link  to='/contact' className="py-2" >Contact</Link>
             <Link  to='/about' className="py-2" >About</Link>
-            <Link  to='/signup' className="py-2" >Sign Up'</Link>
+            <Link  to='/signup' className="py-2" >Sign Up</Link>
+            
+              <a className="flex gap-4 py-2 items-center"> Liked Items</a>
+              <Link to={"/cart"} className="flex gap-4 items-center py-2"> Cart</Link>
+              <Link to={"/MyAccount"} className="flex gap-4 items-center py-2"> Profile</Link>
           </div>
         </div>
         

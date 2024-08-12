@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import searchIcon from "../Icons/Vector (2).png"
 
-const SearchInput = () => {
+const SearchInput = ({className,placeholder}) => {
   const [isMdScreen, setIsMdScreen] = useState(window.innerWidth >= 768);
 
   useEffect(() => {
@@ -13,11 +13,11 @@ const SearchInput = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, [window.innerWidth]);
   return (
-    <div className="relative flex max-w-[243px] w-[70px] md:w-[100px] lg:w-[210px] xl:w-[250px]  items-center">
+    <div className={`relative flex items-center ${className}`}>
       <input
         className="bg-[#F5F5F5] lg:placeholder:text-[14px]    pt-[7px]  pb-[7px] pl-[12px] rounded w-full "
         type="text"
-        placeholder={isMdScreen ? "What are you looking for ?" : ""}
+        placeholder={`${placeholder}`}
       />
      
       <img
