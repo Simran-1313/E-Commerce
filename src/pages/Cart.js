@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { updateItem,removeItem } from "../state/cartProduct";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 import MainpageLayout from "../components/MainpageLayout";
 import { fetchProductDetails } from "../state/productDetailsSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -56,6 +57,7 @@ const Cart = () => {
   }
   const handleClick = (id)=>{
     dispatch(removeItem({id}))
+    toast.success("Item removed")
   }
 
   return (

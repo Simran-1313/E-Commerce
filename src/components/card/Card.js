@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector,useDispatch } from "react-redux";
+import toast from "react-hot-toast";
 import StarRating from "./StarRating";
 import productimg from "../../images/Frame 611.png";
 import wishlisticon from "../../images/heart small.png";
@@ -7,6 +8,7 @@ import groupicon from "../../images/Quick View.png";
 import "./Card.css";
 import { useNavigate } from "react-router-dom";
 import { addItem } from "../../state/cartProduct";
+
 
 
 const Card = ({ product }) => {
@@ -33,6 +35,7 @@ const Card = ({ product }) => {
     }
 
     dispatch(addItem(newItem))
+    toast.success("Added to Cart")
   }
 
   return (
