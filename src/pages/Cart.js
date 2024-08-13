@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import img1 from "../Icons/arrow1.png";
 import img2 from "../Icons/arrow2.png";
 import cross from "../Icons/cross.png"
+import { BiCart } from "react-icons/bi";
 
 
 
@@ -69,6 +70,7 @@ const Cart = () => {
           <h2 className=" text-center">Quantity</h2>
           <h2 className="text-right">Sub Total</h2>
         </div>
+        {list.length === 0 &&<div className="text-4xl gap-4 font-bold flex items-center justify-center my-12 h-[30vh]"> <BiCart/>Cart is Empty!</div> }
         {list.map((item) => {
           const product = getProductDetail(item.productId);
           return product ? (
@@ -111,8 +113,10 @@ const Cart = () => {
                 ${(product.price * item.quantity).toFixed(2)}
               </div>
             </div>
-          ) : (
-            <div key={item.productId}>Loading...</div>
+          ) : (<>
+          <div key={item.productId}>Loading...</div>
+          </>
+            
           );
         })}
         <div className="flex justify-between">

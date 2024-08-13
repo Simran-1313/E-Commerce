@@ -10,7 +10,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 const CustomLink = ({ to, className = "", title }) => {
   const router = useLocation();
   return (
-    <Link to={to} className={`${className} md:text-[14px] lg:text-[16px] relative group`}>
+    <Link to={to} className={`${className} md:text-[14px] lg:text-[16px]  relative group`}>
       {title}
       <span
         className={`h-[1px] inline-block w-0 bg-black absolute left-0 -bottom-[1px] group-hover:w-full transition-[width] ease duration-300 ${router.pathname === to ? 'w-full' : 'w-0'}`}
@@ -43,7 +43,7 @@ const Navbar = () => {
     <>
       <Banner />
       <div className="relative">
-        <div className={`flex bg-white  xl:px-[136px] lg:px-[70px] sm:px-[20px] md:px-[40px] px-[20px] justify-between items-center mt-[40px]`}>
+        <div className={`flex bg-white  xl:px-[120px] max-w-[1440px] mx-auto lg:px-[70px] sm:px-[20px] md:px-[40px] px-[20px] justify-between items-center mt-[40px]`}>
         {!isMdScreen && (
             <div className="flex items-center ">
               <button
