@@ -1,53 +1,63 @@
 import React, { useEffect, useState } from "react";
+import { updateItem,removeItem } from "../state/cartProduct";
 import { Link } from "react-router-dom";
 import MainpageLayout from "../components/MainpageLayout";
 import { fetchProductDetails } from "../state/productDetailsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import img1 from "../Icons/arrow1.png";
 import img2 from "../Icons/arrow2.png";
+import cross from "../Icons/cross.png"
+
+
+
 const Cart = () => {
-  const initialList = [
-    { id: 1, productId: 4, quantity: 1 },
-    { id: 2, productId: 3, quantity: 2 },
-  ];
+  const items = useSelector((state) => state.cartProducts.items);
 
-  const [List, setList] = useState(initialList);
+  const[list,setList] = useState(items)
   const [productData, setProductData] = useState([]);
-
   const dispatch = useDispatch();
-  const {
-    item: productDetails,
-    loading,
-    error,
-  } = useSelector((state) => state.productDetails);
+
+  const { item: productDetail } = useSelector(
+    (state) => state.productDetails
+  );
+ 
   useEffect(() => {
-    List.forEach((item) => {
-      dispatch(fetchProductDetails(item.productId));
-    });
-  }, [dispatch]);
+    list.forEach((item) => dispatch(fetchProductDetails(item.productId)));
+  }, [dispatch,list]);
+
   useEffect(() => {
-    if (productDetails) {
-      setProductData((prevData) => ({
+    setList(items);
+  }, [items]);
+  
+  useEffect(()=>{
+    if(productDetail){
+      setProductData((prevData)=>({
         ...prevData,
-        [productDetails.id]: productDetails,
-      }));
+        [productDetail.id]:productDetail
+      }))
+      
     }
-  }, [productDetails]);
-  const handleQuantityChange = (id, change) => {
-    setList((prevList) =>
-      prevList.map((item) =>
-        item.id === id
-          ? { ...item, quantity: Math.max(1, item.quantity + change) }
-          : item
-      )
-    );
-  };
+  },[productDetail])
+
   const getProductDetail = (productId) => productData[productId];
-  const totalPrice = List.reduce((total, item) => {
+  const totalPrice = items.reduce((total, item) => {
     const product = productData[item.productId];
     const itemTotal = product ? product.price * item.quantity : 0;
     return total + itemTotal;
   }, 0);
+
+
+  const handleQuantityChange = (id,count)=>{
+    const item = items.find((item)=> item.productId === id)
+    if(item){
+      dispatch(updateItem({id,quantity: Math.max(1,item.quantity +count)}))
+    }
+   
+  }
+  const handleClick = (id)=>{
+    dispatch(removeItem({id}))
+  }
+
   return (
     <MainpageLayout>
       <div className="mt-[80px] mb-[140px]">
@@ -57,7 +67,7 @@ const Cart = () => {
           <h2 className=" text-center">Quantity</h2>
           <h2 className="text-right">Sub Total</h2>
         </div>
-        {List.map((item) => {
+        {list.map((item) => {
           const product = getProductDetail(item.productId);
           return product ? (
             <div
@@ -65,7 +75,8 @@ const Cart = () => {
               key={item.productId}
             >
               <div className="flex items-center justify-center">
-                <div className=" mr-[10px]">
+                <div className=" relative mr-[10px]">
+                 { <div className="absolute -left-8" onClick={()=>handleClick(item.productId)}><img className="bg-red-600 p-[4px] rounded-full w-5" src={cross}></img></div>}
                   <img
                     width={50}
                     height={50}
@@ -80,14 +91,14 @@ const Cart = () => {
                 <div className="">{item.quantity}</div>
                 <div className="flex flex-col ml-2 gap-4 ">
                   <button
-                    onClick={() => handleQuantityChange(item.id, -1)}
+                    onClick={() => handleQuantityChange(item.productId, -1)}
                     className="px-2"
                   >
                     <img src={img1}></img>
                   </button>
 
                   <button
-                    onClick={() => handleQuantityChange(item.id, 1)}
+                    onClick={() => handleQuantityChange(item.productId,1)}
                     className="px-2"
                   >
                     <img src={img2}></img>
@@ -139,11 +150,13 @@ const Cart = () => {
               <span>${totalPrice.toFixed(2)}</span>
             </div>
             <div className="flex justify-center">
-              <button className="font-[500] rounded text-white font-poppins text-[16px] px-[48px] py-[16px] bg-[#DB4444]">Proceed to checkout</button>
+              <button className="font-[500] rounded text-white font-poppins text-[16px] px-[48px] py-[16px] bg-[#DB4444]">
+                Proceed to checkout
+              </button>
             </div>
           </div>
         </div>
-      </div >
+      </div>
     </MainpageLayout>
   );
 };

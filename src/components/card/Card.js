@@ -1,11 +1,17 @@
 import React from "react";
+import { useSelector,useDispatch } from "react-redux";
 import StarRating from "./StarRating";
 import productimg from "../../images/Frame 611.png";
 import wishlisticon from "../../images/heart small.png";
 import groupicon from "../../images/Quick View.png";
 import "./Card.css";
 import { useNavigate } from "react-router-dom";
+import { addItem } from "../../state/cartProduct";
+
+
 const Card = ({ product }) => {
+  const dispatch = useDispatch()
+
   const navigate = useNavigate();
   const id = product.id;
   const ratingValue = product.rating.rate;
@@ -20,16 +26,25 @@ const Card = ({ product }) => {
     navigate(`/products/${id}`)
   }
 
+  const clickHandler = (id)=>{
+    const newItem = {
+      productId:id,
+      quantity:1
+    }
+
+    dispatch(addItem(newItem))
+  }
+
   return (
-    <div onClick={()=>(handleClick(id))} className="w-[270px] h-[350px]  card">
+    <div  className="w-[270px] h-[350px]  card">
       <div className=" image-container overflow-hidden w-[270px] h-[250px] bg-[#F5F5F5] ">
-        <img
+        <img onClick={()=>handleClick(id)}
           className="m-auto absolute top-[35px] left-[40px]"
           height={180}
           width={190}
           src={product.image ||productimg }
         ></img>
-        <div className="add-to-cart">Add to Cart</div>
+        <button className="add-to-cart" onClick={()=>clickHandler(id)} >Add to Cart</button>
         {isDiscount && <div className="discount">-{discount}%</div>}
         {isNew && <div className="new">New</div>}
         <div className="card-bar flex flex-col gap-[8px] justify-center">
