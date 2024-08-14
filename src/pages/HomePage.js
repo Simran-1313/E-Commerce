@@ -15,19 +15,7 @@ import OurProducts from "../components/ourproducts/OurProducts";
 import Featured from "../components/featured/Featured";
 import EndTags from "../components/EndTags";
 const Homepage = () => {
-  //  const [products, setProducts] = useState([])
-
-  //  useEffect(()=>{
-  //   const Products = async()=>{
-  //     const res = await fetch('../components/ProductsData.json')
-  //      const Items = await res.json();
-  //      setProducts(Items.products)
-  //      console.log(Items.products)
-  //   }
-
-  //   Products();
-  //  },[])
-
+ 
   return (
     <>
       <main className="bg-[#ffff]  ">

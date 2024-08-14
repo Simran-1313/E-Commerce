@@ -11,7 +11,7 @@ function App() {
   return (
     <Router>
       
-      <Suspense fallback={<Layout> ...Loading</Layout>}>
+     
        <Layout>
        <Routes>
           {routes.map(({ path, component: Component }) => (
@@ -23,7 +23,7 @@ function App() {
           ))}
         </Routes>
        </Layout>
-      </Suspense>
+      
     </Router>
   );
 }

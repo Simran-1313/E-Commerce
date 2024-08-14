@@ -12,21 +12,21 @@ const Breadcrumb = () => {
     <MainpageLayout className=" w-auto" >
         <nav className="breadcrumb mt-[80px]">
       <ul className="flex">
-        <li className="breadcrumb-item">
+        <span className="breadcrumb-item">
           <Link to="/">Home</Link> &nbsp;/ &nbsp;
-        </li>
+        </span>
         {pathnames.map((value, index) => {
           const to = `/${pathnames.slice(0, index + 1).join('/')}`;
           const isLast = index === pathnames.length - 1;
           const isProductPage = pathnames[0] === 'products' && index === 1;
           return (
-            <li key={to} className="breadcrumb-item ">
+            <span key={to} className="breadcrumb-item ">
               {isLast ? (
                  <span className='font-semibold'>{isProductPage && productDetails ? productDetails.title : value}</span>
               ) : (
                 <Link to={to}>{value} &nbsp;/ &nbsp; </Link>
               )}
-            </li>
+            </span>
           );
         })}
       </ul>

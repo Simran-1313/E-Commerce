@@ -5,8 +5,10 @@ import cartIcon from "../../Icons/Cart1.png";
 import SearchInput from "../SearchInput";
 import likedIcon from "../../Icons/Wishlist.png";
 import User from "../../Icons/User";
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'; 
-
+import { useAnimate,stagger } from "framer-motion";
+import { MenuToggle } from "./MenuToggle";
+import SmallNavbar from "./SmallNavbar";
+import "./style.css"
 const CustomLink = ({ to, className = "", title }) => {
   const router = useLocation();
   return (
@@ -20,11 +22,67 @@ const CustomLink = ({ to, className = "", title }) => {
     </Link>
   );
 };
+function useMenuAnimation(isMenuOpen){
+  const [scope,animate] = useAnimate()
+ 
+  useEffect(() => {
+    const menuAnimations = isMenuOpen
+      ? [
+          [
+            "nav",
+            { transform: "translateX(0%)" },
+            { ease: [0.08, 0.65, 0.53, 0.96], duration: 0.6 }
+          ],
+          [
+            "li",
+            { transform: "scale(1)", opacity: 1, filter: "blur(0px)" },
+            { delay: stagger(0.05), at: "-0.1" }
+          ]
+        ]
+      : [
+          [
+            "li",
+            { transform: "scale(0.5)", opacity: 0, filter: "blur(10px)" },
+            { delay: stagger(0.05, { from: "last" }), at: "<" }
+          ],
+          ["nav", { transform: "translateX(-100%)" }, { at: "-0.1" }]
+        ];
+        animate([
+          [
+            "path.top",
+            { d: isMenuOpen ? "M 3 16.5 L 17 2.5" : "M 2 2.5 L 20 2.5" },
+            { at: "<" }
+          ],
+          ["path.middle", { opacity: isMenuOpen ? 0 : 1 }, { at: "<" }],
+          [
+            "path.bottom",
+            { d: isMenuOpen ? "M 3 2.5 L 17 16.346" : "M 2 16.346 L 20 16.346" },
+            { at: "<" }
+          ],
+          ...menuAnimations
+        ]);
+
+
+    
+  }, [isMenuOpen])
+
+  return scope;
+  
+
+}
 
 const Navbar = () => {
+
   const [isMdScreen, setIsMdScreen] = useState(window.innerWidth >= 850);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const location = useLocation()
+  const navigation = useLocation()
+  const scope = useMenuAnimation(isMenuOpen);
+  useEffect(()=>{
+    setIsMenuOpen(false)
+  },[navigation])
+
+  
+
   useEffect(() => {
     const handleResize = () => {
       setIsMdScreen(window.innerWidth >= 850);
@@ -34,30 +92,18 @@ const Navbar = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
   
-  useEffect(()=>{
-    setIsMenuOpen(false);
-
-  },[location])
 
   return (
     <>
       <Banner />
-      <div className="relative">
-        <div className={`flex bg-white  xl:px-[120px] max-w-[1440px] mx-auto lg:px-[70px] sm:px-[20px] md:px-[40px] px-[20px] justify-between items-center mt-[40px]`}>
-        {!isMdScreen && (
-            <div className="flex items-center ">
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-black focus:outline-none"
-              >
-                {isMenuOpen ? (
-                  <XMarkIcon className="w-8 h-8 " />
-                ) : (
-                  <Bars3Icon className="w-8 h-8 " />
-                )}
-              </button>
+      <div className="">
+        <div className={`flex bg-white  xl:px-[115px] max-w-[1440px] mx-auto lg:px-[70px] sm:px-[20px] md:px-[40px] px-[20px] justify-between items-center mt-[28px] lg:mt-[40px] sm:mt-[20px] `}>
+        {!isMdScreen ? (
+            <div  ref={scope} className="flex  items-center ">
+              <SmallNavbar/>
+              <MenuToggle toggle={()=>setIsMenuOpen(!isMenuOpen)} />
             </div>
-          )}
+          ):<div ref={scope} className="hidden"/>}
           <div ><h1 className="font-[700] text-[24px] font-poppins">Exclusive</h1></div>
           
        
@@ -74,7 +120,7 @@ const Navbar = () => {
             <div className="flex gap-[16px] ">
               { isMdScreen?
                 <>
-                <SearchInput placeholder="Whats you looking for ?" className="max-w-[243px] lg:w-[210px] xl:w-[250px]  " />
+                <SearchInput placeholder="Whats you looking for ?" className="max-w-[243px] lg:w-[210px] xl:w-[250px]    " />
                 <a><img height={32} width={32} src={likedIcon} alt="Wishlist" /></a>
               <Link to={"/cart"}><img height={32} width={32} src={cartIcon} alt="Cart" /></Link>
               <Link to={"/MyAccount"}><User /></Link></>
@@ -86,19 +132,7 @@ const Navbar = () => {
         </div>
         
         
-        <div className={` ${isMenuOpen ? 'block' : 'hidden'} absolute z-10 top-full left-0 w-full bg-white shadow-lg`}>
-          <div className="flex flex-col  p-4">
-         
-            <Link  to='/' className="py-2" >Home</Link>
-            <Link  to='/contact' className="py-2" >Contact</Link>
-            <Link  to='/about' className="py-2" >About</Link>
-            <Link  to='/signup' className="py-2" >Sign Up</Link>
-            
-              <a className="flex gap-4 py-2 items-center"> Liked Items</a>
-              <Link to={"/cart"} className="flex gap-4 items-center py-2"> Cart</Link>
-              <Link to={"/MyAccount"} className="flex gap-4 items-center py-2"> Profile</Link>
-          </div>
-        </div>
+        
         
       </div>
      

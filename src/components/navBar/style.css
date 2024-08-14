@@ -1,0 +1,21 @@
+.menu li {
+    color: black;
+    background-color: transparent;
+    display: block;
+    transform-origin: -20px 50%;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px;
+    will-change: transform, opacity, filter;
+  }
+  .menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 400px;
+    background: var(--accent);
+    padding-top: 10px;
+    transform: translateX(-100%);
+    will-change: transform;
+  }

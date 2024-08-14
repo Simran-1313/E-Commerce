@@ -6,7 +6,7 @@ import google from '../images/Icon-Google.png'
 const Signup = () => {
   return (
     <>
-      <div className='flex w-full mt-[60px] items-center mb-[8.8rem]' >
+      <div className='flex w-full  xl:justify-center mt-[60px] items-center mb-[8.8rem]' >
         <div><img src={login} ></img></div>
         <div className='flex-col flex ml-[8.5rem] gap-y-[3rem] ' >
           <h2 className='flex justify-center font-sans font-medium text-4xl' >Create An account</h2>

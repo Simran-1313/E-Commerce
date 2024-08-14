@@ -53,7 +53,7 @@ const Todays = () => {
      <TodaysCarousel
         products={products}
         swiperRef={swiperRef}
-        className=" mt-[40px] lg:ml-[8.5rem] md:ml-[6rem] sm:ml-[3rem] "
+        className=" mt-[40px] mx-4 lg:ml-[8.5rem] md:ml-[6rem] sm:ml-[3rem] "
       />
     
       <div className="flex justify-center items-center mt-[60px]">

@@ -7,6 +7,11 @@
     color: black;
     gap: 17px;
     display: flex;
+    @media ( max-width:768px ){
+        font-size: 20px;
+        
+        
+    }
 }
 
 .counter {
@@ -15,6 +20,10 @@
     align-items: center;
    
     gap: 20px;
+    @media ( max-width:768px ){
+        gap:7px;
+        
+    }
 }
 .counter div{
     color: red;

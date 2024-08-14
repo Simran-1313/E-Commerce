@@ -15,7 +15,7 @@ const SearchInput = ({className,placeholder}) => {
   return (
     <div className={`relative flex items-center ${className}`}>
       <input
-        className="bg-[#F5F5F5] lg:placeholder:text-[14px]    pt-[7px]  pb-[7px] pl-[12px] rounded w-full "
+        className="bg-[#F5F5F5] lg:placeholder:text-[14px]    pt-[7px]  pb-[7px] pl-[12px] rounded w-full focus:outline-none "
         type="text"
         placeholder={`${placeholder}`}
       />
