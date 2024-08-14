@@ -4,7 +4,7 @@ import "./style.css"
 
 const SmallNavbar = () => {
   return (
-    <nav className=" menu z-10 h-full pl-[3rem] mt-[7rem] flex backdrop-blur-xl flex-col w-[50%] p-4 left-0  bg-white shadow-lg">
+    <nav className=" menu z-10 h-full pl-[3rem] mt-[7rem] flex backdrop-blur-xl  flex-col w-[50%] p-4 left-0  bg-white shadow-lg">
          
          
           <ul>

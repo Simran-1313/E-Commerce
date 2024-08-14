@@ -40,7 +40,7 @@ const Heading = ({ children, title, description, isCounter , className}) => {
         <div className="w-[20px] h-[40px] flex bg-[rgb(219,68,68)] rounded" />
         <div className="font-semibold text-base  text-[#DB4444]">{title}</div>
       </div>
-      <div className="flex flex-wrap    mt-[24px]  ">
+      <div className="flex flex-wrap   mt-0 md:mt-[24px]  ">
         <div className="flex gap-6   md:gap-x-[5.5rem]   items-end ">
           <h2 className=" md:text-4xl text-2xl  font-semibold font-poppins ">
             {description}

@@ -1,6 +1,11 @@
 .counter h2 {
    font-size: 12px;
    color: black;
+   @media ( max-width:768px ){
+    font-size: 10px;
+    
+    
+}
 }
 .counter div h5 {
     font-size: 32px;

@@ -6,6 +6,9 @@
     font-weight: bold;
     font-size: 20px;
     padding: 10px;
+    text-decoration: underline rgba(27, 27, 27, 0.158)  ;
+    text-underline-offset: 4px;
+
     will-change: transform, opacity, filter;
   }
   .menu {

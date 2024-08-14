@@ -13,7 +13,7 @@ const Sidebar = ({sections}) => {
   
 console.log(sections)
   return (
-    <div className='w-[217px] h-auto text-[16px] flex flex-col gap-[16px]'>
+    <div className='w-[217px] h-auto md:text-[16px] text-[12px]   flex flex-col gap-[8px] lg:gap-[16px]'>
     {sections.map((category, index) => (
       <div key={index}>
      {  category?.categories?.length ?   <div
@@ -29,7 +29,7 @@ console.log(sections)
           >
             <div style={{  }}>{category.title}</div>
             <div><svg
-              className={`w-6 h-6 transition-transform transform ${
+              className={`md:w-6 md:h-6  w-3 h-3 transition-transform transform ${
                 openIndex === index ? "rotate-180" : "-rotate-90"
               }`}
               xmlns="http://www.w3.org/2000/svg"

@@ -21,12 +21,12 @@ const Homepage = () => {
       <main className="bg-[#ffff]  ">
         <MainpageLayout>
         
-          <div className="flex flex-wrap-reverse mb-[9rem] lg:flex-nowrap md:flex-wrap-reverse  md:mx-auto   gap-[16px] w-[100%] ">
-            <div className="pt-[40px] flex justify-normal mx-auto ">
+          <div className="flex flex-wrap-reverse lg:mb-[9rem] mb-12 lg:flex-nowrap md:flex-wrap-reverse  md:mx-auto   gap-[16px] w-[100%] ">
+            <div className=" lg:pt-[40px] pt-8 flex justify-normal  ">
               <Sidebar sections={sections} />
             </div>
            
-            <div className=" max-w-[85%] lg:border-l-[1px] border-black/30  md:border-0 flex justify-center px-[45px] pt-[40px] ">
+            <div className=" md:max-w-[85%] w-[100%]  mt-8 md:mt-0  md:mx-auto lg:mx-0 lg:border-l-[1px] border-black/30  md:border-0  flex justify-center md:px-[45px] md:pt-[40px] ">
               <HeroSlider />
             </div>
           </div>

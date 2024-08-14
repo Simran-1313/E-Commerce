@@ -24,10 +24,10 @@ const TodaysCarousel = ({ products,className , swiperRef}) => {
         ref={swiperRef}
        
         modules={[Pagination, Navigation]}
-        className="myswiper"
+        className="Todayswiper "
       >
         {products.map((product) => (
-          <SwiperSlide style={{width:270}}>
+          <SwiperSlide  >
             <div className=" w-[270px]"><Card key={product.id} product={product}  /></div>
           </SwiperSlide>
         ))}
