@@ -5,13 +5,13 @@ const Path = (props) => (
     stroke="#000"
     strokeLinecap="round"
     {...props}
-    className="z-20"
+    
   />
 );
 
 export const MenuToggle = ({ toggle }) => (
   <button onClick={toggle}>
-    <svg width="23" height="18" viewBox="0 0 23 18">
+    <svg width="23" height="18" viewBox="0 0 23 18" className="">
       <Path
         d="M 2 2.5 L 20 2.5"
         className="top"

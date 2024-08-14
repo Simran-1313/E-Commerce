@@ -8,7 +8,7 @@ import User from "../../Icons/User";
 import { useAnimate,stagger } from "framer-motion";
 import { MenuToggle } from "./MenuToggle";
 import SmallNavbar from "./SmallNavbar";
-import "./style.css"
+
 const CustomLink = ({ to, className = "", title }) => {
   const router = useLocation();
   return (
