@@ -5,7 +5,7 @@ const Footer = ({footerData}) => {
   console.log(footerData);
   return (
     <div className="bg-black   text-[#FAFAFA] pt-[5rem] px-[8.5rem]">
-      <div className="flex w-full flex-wrap justify-between gap-[40px]">
+      <div className="flex w-full max-w-[1440px] mx-auto  flex-wrap justify-between gap-[40px]">
         {footerData.sections.map((section, index) => (
           <div className="flex-col justify-between" key={index}>
             <h2 className="text-xl font-medium mb-6">{section.title}</h2>

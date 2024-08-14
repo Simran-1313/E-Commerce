@@ -35,7 +35,7 @@ const Todays = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div>
+    <>
       <MainpageLayout className=" ">
         <Heading className="flex-wrap" title="Today's" description="Flash  Sales" isCounter={true}>
           
@@ -49,16 +49,18 @@ const Todays = () => {
           </div>
         </Heading>
       </MainpageLayout>
-      <TodaysCarousel
+     
+     <TodaysCarousel
         products={products}
         swiperRef={swiperRef}
-        className=" mt-[40px] ml-[8.5rem] md:ml-[6rem] sm:ml-[3rem] "
+        className=" mt-[40px] lg:ml-[8.5rem] md:ml-[6rem] sm:ml-[3rem] "
       />
+    
       <div className="flex justify-center items-center mt-[60px]">
         <Link className="bg-[#DB4444] flex justify-center items-center  px-[48px] py-[16px] text-[16px] rounded font-poppins font-medium text-white" to={"/products"} >View All Products</Link>
       </div>
       
-    </div>
+    </>
   );
 };
 
