@@ -1,8 +1,7 @@
 import React, { useRef ,useEffect} from "react";
 import Countdown from "react-countdown";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import {fetchProductsAll} from "../../state/productsAllSlice"
+
 import Heading from "../Heading";
 import TodaysCarousel from "../todaysCarousal/TodaysCarousal";
 
@@ -10,15 +9,9 @@ import MainpageLayout from "../MainpageLayout";
 import leftarrow from "../../images/icons_arrow-left.png";
 import rightarrow from "../../images/icons arrow-right.png";
 
-const Todays = () => {
+const Todays = ({products}) => {
 
-  const dispatch = useDispatch()
-  const {items:products,loading, error} = useSelector((state)=>state.productsAll)
-  
-  useEffect(()=>{
-    dispatch(fetchProductsAll())
-  },[dispatch])
-  
+ 
   const swiperRef = useRef(null);
   const slideNext = () => {
     if (swiperRef.current) {
@@ -31,8 +24,7 @@ const Todays = () => {
       swiperRef.current.swiper.slidePrev();
     }
   };
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+  
 
   return (
     <>

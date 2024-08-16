@@ -1,13 +1,12 @@
 .menu li {
-    color: black;
+    
     background-color: transparent;
     display: block;
     transform-origin: -20px 50%;
     font-weight: bold;
     font-size: 20px;
-    padding: 10px;
-    text-decoration: underline rgba(27, 27, 27, 0.158)  ;
-    text-underline-offset: 4px;
+    padding: 15px;
+    
 
     will-change: transform, opacity, filter;
   }
@@ -17,8 +16,11 @@
     left: 0;
     bottom: 0;
     width: 400px;
-    background: var(--accent);
+   ;
     padding-top: 10px;
     transform: translateX(-100%);
     will-change: transform;
+  }
+  .menu ul{
+    margin-top: 12px;
   }

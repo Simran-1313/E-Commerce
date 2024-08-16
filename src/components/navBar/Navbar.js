@@ -71,7 +71,7 @@ function useMenuAnimation(isMenuOpen){
 
 }
 
-const Navbar = () => {
+const Navbar = ({className}) => {
 
   const [isMdScreen, setIsMdScreen] = useState(window.innerWidth >= 850);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -94,10 +94,11 @@ const Navbar = () => {
   
 
   return (
-    <>
+    < div className=" sticky top-0  bg-white z-10  ">
       <Banner />
-      <div className="">
-        <div className={`flex bg-white  xl:px-[115px] max-w-[1440px] mx-auto lg:px-[70px] sm:px-[20px] md:px-[40px] px-[20px] justify-between items-center mt-[28px] lg:mt-[40px] sm:mt-[20px] `}>
+      <div>
+      <div className="overflow-visible">
+        <div className={`flex  z-10 bg-white  xl:px-[115px] max-w-[1440px] mx-auto lg:px-[70px] sm:px-[20px] md:px-[40px] px-[20px] justify-between items-center pt-[28px] lg:pt-[40px] sm:pt-[20px] ${className} `}>
         {!isMdScreen ? (
             <div  ref={scope} className="flex  items-center ">
               <SmallNavbar/>
@@ -137,7 +138,8 @@ const Navbar = () => {
       </div>
      
       <div className="w-full mt-[16px] h-[0.5px] bg-black"></div>
-    </>
+      </div>
+    </div>
   );
 };
 

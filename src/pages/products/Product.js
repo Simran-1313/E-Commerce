@@ -13,6 +13,7 @@ import Minus from "../../Icons/Minus"
 import Plus from "../../Icons/Plus"
 import img1 from "../../Icons/icon-delivery.png"
 import img2 from "../../Icons/Icon-return.png"
+import Loader from "../../components/loader/Loader";
 const Product = () => {
   const { productId } = useParams();
   const dispatch = useDispatch();
@@ -38,7 +39,7 @@ const Product = () => {
   const handleIncrement= ()=>{
     setCount(count+1);
   }
-  if (loading) return <>Loading...</>;
+  if (loading) return <Loader/>;
   if (error) return <>Error: {error}</>;
   if (!productDetails) return <>No product details available.</>;
 

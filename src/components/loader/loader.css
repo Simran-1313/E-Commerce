@@ -1,0 +1,93 @@
+
+.loader {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+  
+  .slider {
+    overflow: hidden;
+    background-color: white;
+    margin: 0 15px;
+    height: 80px;
+    width: 20px;
+    border-radius: 30px;
+    -webkit-box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.1), -15px -15px 30px #fff,
+      inset -5px -5px 10px rgba(0, 0, 255, 0.1),
+      inset 5px 5px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.1), -15px -15px 30px #fff,
+      inset -5px -5px 10px rgba(0, 0, 255, 0.1),
+      inset 5px 5px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  .slider::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    -webkit-box-shadow: inset 0px 0px 0px rgba(0, 0, 0, 0.3), 0px 420px 0 400px #2697f3,
+      inset 0px 0px 0px rgba(0, 0, 0, 0.1);
+            box-shadow: inset 0px 0px 0px rgba(0, 0, 0, 0.3), 0px 420px 0 400px #2697f3,
+      inset 0px 0px 0px rgba(0, 0, 0, 0.1);
+    -webkit-animation: animate_2 2.5s ease-in-out infinite;
+            animation: animate_2 2.5s ease-in-out infinite;
+    -webkit-animation-delay: calc(-0.5s * var(--i));
+            animation-delay: calc(-0.5s * var(--i));
+  }
+  
+  @-webkit-keyframes animate_2 {
+    0% {
+      -webkit-transform: translateY(250px);
+              transform: translateY(250px);
+      -webkit-filter: hue-rotate(0deg);
+              filter: hue-rotate(0deg);
+    }
+  
+    50% {
+      -webkit-transform: translateY(0);
+              transform: translateY(0);
+    }
+  
+    100% {
+      -webkit-transform: translateY(250px);
+              transform: translateY(250px);
+      -webkit-filter: hue-rotate(180deg);
+              filter: hue-rotate(180deg);
+    }
+  }
+  
+  @keyframes animate_2 {
+    0% {
+      -webkit-transform: translateY(250px);
+              transform: translateY(250px);
+      -webkit-filter: hue-rotate(0deg);
+              filter: hue-rotate(0deg);
+    }
+  
+    50% {
+      -webkit-transform: translateY(0);
+              transform: translateY(0);
+    }
+  
+    100% {
+      -webkit-transform: translateY(250px);
+              transform: translateY(250px);
+      -webkit-filter: hue-rotate(180deg);
+              filter: hue-rotate(180deg);
+    }
+  }
+  

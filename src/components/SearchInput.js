@@ -3,6 +3,9 @@ import searchIcon from "../Icons/Vector (2).png"
 
 const SearchInput = ({className,placeholder}) => {
   const [isMdScreen, setIsMdScreen] = useState(window.innerWidth >= 768);
+  if(!placeholder){
+    placeholder = " ";
+  }
 
   useEffect(() => {
     const handleResize = () => {

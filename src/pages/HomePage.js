@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {fetchProductsAll} from "../state/productsAllSlice"
 import products from "../components/ProductsData.json";
 import Layout from "../components/Layout";
 import HeroSlider from "../components/heroslider/HeroSlider";
@@ -14,8 +16,19 @@ import ThisMonth from "../components/thismonth/ThisMonth";
 import OurProducts from "../components/ourproducts/OurProducts";
 import Featured from "../components/featured/Featured";
 import EndTags from "../components/EndTags";
+import Loader from "../components/loader/Loader";
 const Homepage = () => {
- 
+  
+  const dispatch = useDispatch()
+  const {items:products,loading, error} = useSelector((state)=>state.productsAll)
+  
+  useEffect(()=>{
+    dispatch(fetchProductsAll())
+  },[dispatch])
+  
+  if (loading) return <Loader/>;
+  if (error) return <p>Error: {error}</p>;
+
   return (
     <>
       <main className="bg-[#ffff]  ">
@@ -32,7 +45,7 @@ const Homepage = () => {
           </div>
         </MainpageLayout>
         <div>
-          <Todays />
+          <Todays products={products} />
         </div>
         <MainpageLayout>
           <div className="w-full bg-black/30 h-[1px] my-[60px] " />
