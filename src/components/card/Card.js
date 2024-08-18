@@ -39,7 +39,7 @@ const Card = ({ product }) => {
   }
 
   return (
-    <div  className="w-[270px] h-[350px]  card">
+    <div  className="w-[270px] h-[350px]   card">
       <div className=" image-container overflow-hidden w-[270px] h-[250px] bg-[#F5F5F5] ">
         <img onClick={()=>handleClick(id)}
           className="m-auto absolute top-[35px] h-[200px] left-[40px]"

@@ -95,12 +95,12 @@ const Form = () => {
 
   return (
     <>
-        <div className='p-[80px] pt-[40px] flex flex-col mx-auto max-w-[870px]'>
+        <div className='xl:p-[80px] pb-[40px]  pt-[40px] flex flex-col mx-auto '>
        
        <h2 className='mb-[16px] font-medium text-xl text-red-500'>Edit Your Profile </h2>
-       <form onSubmit={handleSubmit} className=' flex flex-col gap-[50px] '>
-         <div className='flex gap-[50px] w-full'>
-         <div className='flex flex-col w-full'>
+       <form onSubmit={handleSubmit} className=' flex flex-col  gap-[50px] '>
+         <div className='flex   gap-[30px] sm:gap-[50px] flex-wrap w-full'>
+         <div className='flex flex-col w-full md:w-[350px]'>
            <label>First Name:</label>
            <input
              type="text"
@@ -113,7 +113,7 @@ const Form = () => {
            {errors.firstName && <span style={{ color: 'red' }}>{errors.firstName}</span>}
          </div>
          
-         <div className='flex flex-col w-full'>
+         <div className='flex flex-col md:w-[350px] w-full '>
            <label>lastName:</label>
            <input
              type="text"
@@ -126,8 +126,8 @@ const Form = () => {
            {errors.lastName && <span style={{ color: 'red' }}>{errors.lastName}</span>}
          </div>
          </div>
-         <div className='flex gap-[50px]'>
-         <div className='flex flex-col w-full'>
+         <div className='flex w-full flex-wrap  gap-[30px] sm:gap-[50px]'>
+         <div className='flex flex-col w-full md:w-[350px]'>
            <label>Email:</label>
            <input
              type="email"
@@ -139,7 +139,7 @@ const Form = () => {
            />
            {errors.email && <span style={{ color: 'red' }}>{errors.email}</span>}
          </div>
-         <div className='flex flex-col w-full'>
+         <div className='flex flex-col w-full md:w-[350px]'>
            <label>Address:</label>
            <input
              type="address"

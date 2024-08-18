@@ -62,7 +62,7 @@ const Cart = () => {
   }
 
   return (
-    <MainpageLayout>
+    <MainpageLayout className="mx-[1.5rem]">
       <div className="mt-[80px] mb-[140px]">
         <div className="flex justify-between  font-[400] shadow text-[16px] py-[24px] px-[40px]">
           <h2 className="w-[250px] ">Product</h2>
@@ -75,12 +75,12 @@ const Cart = () => {
           const product = getProductDetail(item.productId);
           return product ? (
             <div
-              className="flex justify-between font-poppins text-[16px] font-[400] items-center py-[16px] shadow px-[40px] my-[20px]"
+              className="flex justify-between font-poppins sm:text-[16px] font-[400] items-center py-[16px] shadow md:px-[40px] my-[20px]"
               key={item.productId}
             >
               <div className="flex items-center justify-center">
                 <div className=" relative mr-[10px]">
-                 { <div className="absolute -left-8" onClick={()=>handleClick(item.productId)}><img className="bg-red-600 p-[4px] rounded-full w-5" src={cross}></img></div>}
+                 { <div className="absolute left-9 -top-3" onClick={()=>handleClick(item.productId)}><img className="bg-red-600 p-[4px] rounded-full w-5" src={cross}></img></div>}
                   <img
                     width={50}
                     height={50}
@@ -88,10 +88,10 @@ const Cart = () => {
                     src={product.image}
                   ></img>
                 </div>
-                <div className="w-[150px]  h-auto flex">{product.title}</div>
+                <div className=" w-[100px] sm:w-[150px]  h-auto flex">{product.title}</div>
               </div>
-              <div>${product.price}</div>
-              <div className="flex items-center justify-center w-[72px] h-[44px] rounded border-[1px] border-black">
+              <div className=" sm:w-[80px] flex justify-center">${product.price}</div>
+              <div className="flex items-center justify-center w-[55px] sm:w-[72px]  h-[44px] rounded border-[1px] border-black">
                 <div className="">{item.quantity}</div>
                 <div className="flex flex-col ml-2 gap-4 ">
                   <button
@@ -109,7 +109,7 @@ const Cart = () => {
                   </button>
                 </div>
               </div>
-              <div className="w-[50px] text-right">
+              <div className="  sm:w-[50px]  sm:text-right">
                 ${(product.price * item.quantity).toFixed(2)}
               </div>
             </div>
@@ -130,18 +130,18 @@ const Cart = () => {
             Update Cart
           </button>
         </div>
-        <div className="flex justify-between flex-wrap ">
-          <div className="flex mt-[80px] gap-[16px] ">
+        <div className="flex  justify-between flex-wrap ">
+          <div className="flex mt-[80px] flex-wrap gap-[16px] ">
             <input
               type="text"
-              className="border-[1px] min-w-[300px] pl-[24px] h-min py-[16px] rounded border-black"
+              className="border-[1px] w-full sm:w-auto min-w-[300px] pl-[24px] h-min py-[16px] rounded border-black"
               placeholder="Coupon Code"
             ></input>
-            <button className="flex bg-[#DB4444] h-min rounded text-[16px] font-[500] text-white  items-start py-[16px] px-[48px]">
+            <button className="flex mx-auto bg-[#DB4444] h-min rounded text-[16px] font-[500] text-white  items-start py-[16px] px-[48px]">
               Apply Coupon
             </button>
           </div>
-          <div className="min-w-[470px] font-poppins mt-[80px] px-[24px] py-[32px] border-[1.5px] rounded border-black flex flex-col">
+          <div className="md:min-w-[470px] mx-auto w-full font-poppins mt-[80px] px-[24px] py-[32px] border-[1.5px] rounded border-black flex flex-col">
             <h2 className=" font-[500] text-[20px] pb-6">Cart Total</h2>
             <div className="flex justify-between border-b pb-[16px] border-black/50">
               <span className="font-[400] text-[16px]">Sub Total:</span>

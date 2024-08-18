@@ -9,8 +9,8 @@ const About = () => {
   return (
     <>
         
-        <MainpageLayout className="mr-[0rem]">
-            <Description/>
+        <MainpageLayout className=" md:mr-[0rem]">
+        <Description/>
             
         </MainpageLayout>
         <MainpageLayout>

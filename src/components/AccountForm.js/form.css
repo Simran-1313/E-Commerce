@@ -5,6 +5,6 @@
     margin-top: 8px;
 }
 
- form{
-    max-width: 870px;
+ .about form + div{
+   
 }

@@ -5,7 +5,7 @@ import './App.css';
 import routes from './routes/routes';
 import Layout from './components/Layout';
 import Breadcrumb from "./components/Breadcrumb"
-
+import { SessionProvider } from 'next-auth/react';
 function App() {
  
   return (
