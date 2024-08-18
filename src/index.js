@@ -10,7 +10,7 @@ import { SessionProvider } from 'next-auth/react';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <SessionProvider 
- basePath='https://next-auth-api-six.vercel.app/'
+ baseUrl='https://next-auth-api-six.vercel.app/'
 >
       <Provider store={store}>
         
