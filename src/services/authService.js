@@ -4,7 +4,7 @@ const URL = process.env.REACT_APP_API_URL;
 
 const register = async (username, email, password) => {
     try{
-        const response = await axios.post(API_URL + 'register', {
+        const response = await axios.post(RECT_APP_API_URL + 'register', {
             username,
             email,
             password,
@@ -17,7 +17,7 @@ const register = async (username, email, password) => {
 };
 
 const login = async (email, password) => {
-    try{const response = await axios.post(API_URL + 'login', {
+    try{const response = await axios.post(RECT_APP_API_URL + 'login', {
         email,
         password,
     });
