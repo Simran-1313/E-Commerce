@@ -7,28 +7,19 @@ import Layout from './components/Layout';
 import Breadcrumb from "./components/Breadcrumb"
 
 function App() {
-  const[isloggedIn, setIsloggedIn] = useState(false);
-  const[User,setUser]= useState("")
-  useEffect(() => {
-  
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (user && user.token) {
-      setIsloggedIn(true);
-    }
-    setUser(user)
-  }, []);
+
  
   return (
     <Router >
       
      
-       <Layout>
+       <Layout  >
        <Routes>
           {routes.map(({ path, component: Component }) => (
             <Route
               key={path}
               path={path}
-              element={<Component User={User} isloggedIn={isloggedIn} setIsloggedIn={setIsloggedIn}/>}
+              element={<Component />}
             />
           ))}
         </Routes>

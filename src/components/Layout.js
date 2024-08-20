@@ -5,7 +5,7 @@ import Breadcrumb from "./Breadcrumb";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
-const Layout = ({ children }) => {
+const Layout = ({ children,setIsloggedIn }) => {
   const location = useLocation();
   useEffect(() => {
     window.scroll(0,0)
@@ -13,7 +13,7 @@ const Layout = ({ children }) => {
   
   return (
     <div className="bg-white mx-auto w-full">
-      <Navbar />
+      <Navbar setIsloggedIn={setIsloggedIn} />
 
       <div className="bg-white mx-auto min-h-[100vh] max-w-[1440px]">
       {(location.pathname === "/")? null :<Breadcrumb/>}

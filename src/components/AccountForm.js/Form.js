@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import MainpageLayout from '../MainpageLayout'
 import "./form.css"
-const Form = ({User}) => {
+import { useSelector } from 'react-redux';
+const Form = () => {
+  const {user} = useSelector((state)=>state.auth)
+  console.log(user)
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -105,7 +108,7 @@ const Form = ({User}) => {
            <input
              type="text"
              name="firstName"
-             value={formData.firstName||User.userName}
+             value={formData.firstName||user?.userName}
              onChange={handleChange}
              placeholder='First Name'
              className='form-input '

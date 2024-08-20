@@ -2,10 +2,24 @@ import React from 'react'
 import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import "./style.css"
-
+import { useDispatch, useSelector } from 'react-redux'
+import { logoutUser } from '../../state/authSlice'
+import toast from 'react-hot-toast'
 const SmallNavbar = () => {
+  const {user} = useSelector((state)=>state.auth)
+  const dispatch = useDispatch()
+  const {isLoggedin} = useSelector((state)=>state.auth)
+
+  const clickHandler = ()=>{
+    dispatch(logoutUser());
+   toast.success("Logged Out Successfully")
+   
+  }
   const CustomLink = ({ to, className = "", title }) => {
   const router = useLocation();
+
+    
+
   return (
     <Link to={to} className={`${className} md:text-[14px] lg:text-[16px]  relative group`}>
       {title}
@@ -22,6 +36,9 @@ const SmallNavbar = () => {
          
          
           <ul>
+            {
+              isLoggedin? <div className='p-[15px] flex justify-between text-xl font-bold'> Hi {user?.userName}<div className='cursor-pointer' onClick={clickHandler}>LogOut</div> </div>:""
+            }
           <li > <CustomLink title='Home' to='/' /></li>
            <li> <CustomLink title='Contact' to='/contact' /></li>
             <li> <CustomLink title='About' to='/about' /></li>

@@ -6,6 +6,8 @@ import google from "../images/Icon-Google.png";
 import { useState } from "react";
 
 import authService from "../services/authService";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../state/authSlice";
 
 const SignUp = () => {
   const [username, setUsername] = useState("");
@@ -13,15 +15,17 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-
+  const dispatch = useDispatch()
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await authService.register(username, email, password);
-      setSuccess("Registration successful! You can now log in.");
-    } catch (err) {
-      setError("Failed to register. Please try again.");
-    }
+    dispatch(registerUser({username,email,password}))
+    // try {
+    //   await authService.register(username, email, password);
+    //   setSuccess("Registration successful! You can now log in.");
+    // } catch (err) {
+    //   setError("Failed to register. Please try again.");
+    // }
   };
 
   return (

@@ -3,16 +3,21 @@ import axios from 'axios';
 const API_URL = 'https://e-commercebackend-production-fe00.up.railway.app/api/auth/';
 
 const register = async (username, email, password) => {
-    const response = await axios.post(API_URL + 'register', {
-        username,
-        email,
-        password,
-    });
-    return response.data;
+    try{
+        const response = await axios.post(API_URL + 'register', {
+            username,
+            email,
+            password,
+        });
+        return response.data;
+    }
+    catch(e){
+        throw new Error ("Registration Failed")
+    }
 };
 
 const login = async (email, password) => {
-    const response = await axios.post(API_URL + 'login', {
+    try{const response = await axios.post(API_URL + 'login', {
         email,
         password,
     });
@@ -22,7 +27,12 @@ const login = async (email, password) => {
     }
 
     return response.data;
-};
+}
+catch(e){
+    throw new Error("Login failed")
+}
+
+;}
 
 const logout = () => {
     localStorage.removeItem('user');
