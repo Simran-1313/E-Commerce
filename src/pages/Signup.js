@@ -8,6 +8,7 @@ import { useState } from "react";
 import authService from "../services/authService";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../state/authSlice";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
   const [username, setUsername] = useState("");
@@ -20,6 +21,7 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(registerUser({username,email,password}))
+    
     // try {
     //   await authService.register(username, email, password);
     //   setSuccess("Registration successful! You can now log in.");

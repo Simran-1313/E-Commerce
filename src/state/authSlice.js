@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import authService from "../services/authService";
+import toast from "react-hot-toast";
+import { Router } from "react-router-dom";
 
 const initialState = {
     isLoggedin:JSON.parse(localStorage.getItem('user')) ? true : false,
@@ -11,6 +13,8 @@ const initialState = {
 export const registerUser = createAsyncThunk('auth/registerUser', async(userData)=>{
     console.log(userData)
     const response = await authService.register(userData.username, userData.email,userData.password);
+    toast.success("User Created Successfully Log in now")
+    
     return response;
 })
 
