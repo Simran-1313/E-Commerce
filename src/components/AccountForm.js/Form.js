@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import MainpageLayout from '../MainpageLayout'
 import "./form.css"
-const Form = () => {
+const Form = ({User}) => {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -105,7 +105,7 @@ const Form = () => {
            <input
              type="text"
              name="firstName"
-             value={formData.firstName}
+             value={formData.firstName||User.userName}
              onChange={handleChange}
              placeholder='First Name'
              className='form-input '

@@ -8,6 +8,7 @@ import Product from "../pages/products/Product";
 import Products from "../pages/Products";
 import Cart from "../pages/Cart";
 import Error from "../pages/Error";
+import Category from "../pages/Category"
 
 const routes = [
   { path: "/", component: HomePage },
@@ -19,6 +20,7 @@ const routes = [
   { path: "/products/:productId", component: Product },
   { path: "/products", component: Products },
   { path: "/cart", component: Cart },
+  { path: "/category/:category", component: Category},
   { path: "*", component: Error },
 ];
 

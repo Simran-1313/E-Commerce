@@ -1,15 +1,25 @@
 import logo from './logo.svg';
-import React, { Suspense, lazy, useEffect } from 'react';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import routes from './routes/routes';
 import Layout from './components/Layout';
 import Breadcrumb from "./components/Breadcrumb"
-import { SessionProvider } from 'next-auth/react';
+
 function App() {
+  const[isloggedIn, setIsloggedIn] = useState(false);
+  const[User,setUser]= useState("")
+  useEffect(() => {
+  
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user && user.token) {
+      setIsloggedIn(true);
+    }
+    setUser(user)
+  }, []);
  
   return (
-    <Router>
+    <Router >
       
      
        <Layout>
@@ -18,7 +28,7 @@ function App() {
             <Route
               key={path}
               path={path}
-              element={<Component />}
+              element={<Component User={User} isloggedIn={isloggedIn} setIsloggedIn={setIsloggedIn}/>}
             />
           ))}
         </Routes>

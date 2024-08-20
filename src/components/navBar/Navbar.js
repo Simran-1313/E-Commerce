@@ -77,6 +77,7 @@ const Navbar = ({className}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigation = useLocation()
   const scope = useMenuAnimation(isMenuOpen);
+  
   useEffect(()=>{
     setIsMenuOpen(false)
   },[navigation])
