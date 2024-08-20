@@ -8,8 +8,9 @@ const initialState = {
     error:null
 
 }
-export const registerUser = createAsyncThunk('auth/registerUer', async(userData)=>{
-    const response = await authService.register(userData.userName, userData.email,userData.password);
+export const registerUser = createAsyncThunk('auth/registerUser', async(userData)=>{
+    console.log(userData)
+    const response = await authService.register(userData.username, userData.email,userData.password);
     return response;
 })
 
