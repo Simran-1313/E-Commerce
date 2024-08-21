@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState,useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import MainpageLayout from './MainpageLayout';
 import { useSelector } from 'react-redux';
@@ -7,6 +7,13 @@ const Breadcrumb = () => {
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter(x => x);
   const productDetails = useSelector((state) => state.productDetails.item);
+  const [title,setTitle] = useState('');
+
+  useEffect(()=>{
+    if(productDetails){
+      setTitle(productDetails.title.substring(0,25)+"..." )
+    }
+  },[productDetails])
 
   return (
     <MainpageLayout className=" w-auto" >
@@ -23,7 +30,7 @@ const Breadcrumb = () => {
           return (
             <span key={to} className="breadcrumb-item ">
               {isLast ? (
-                 <span className='font-semibold'>{isProductPage && productDetails ? productDetails.title : decodedValue}</span>
+                 <span className='font-semibold'>{isProductPage && productDetails ? title : decodedValue}</span>
               ) : (
                 <Link to={to}>{decodedValue} &nbsp;/ &nbsp; </Link>
               )}

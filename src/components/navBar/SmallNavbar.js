@@ -42,7 +42,7 @@ const SmallNavbar = () => {
           <li > <CustomLink title='Home' to='/' /></li>
            <li> <CustomLink title='Contact' to='/contact' /></li>
             <li> <CustomLink title='About' to='/about' /></li>
-            <li><CustomLink title='Sign Up' to='/signup' /></li>
+            {!isLoggedin&&<li><CustomLink title='Sign Up' to='/signup' /></li>}
            <li> <CustomLink title='Liked Items' to='' /></li>
            <li> <CustomLink title='Cart' to='/cart' /></li>
             <li><CustomLink title='Profile' to='/MyAccount' /></li>

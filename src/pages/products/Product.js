@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 import { useParams } from "react-router-dom";
 import { fetchProductDetails } from "../../state/productDetailsSlice";
 import Layout from "../../components/Layout";
@@ -14,6 +15,9 @@ import Plus from "../../Icons/Plus"
 import img1 from "../../Icons/icon-delivery.png"
 import img2 from "../../Icons/Icon-return.png"
 import Loader from "../../components/loader/Loader";
+import CategoryProducts from "../../components/categoryProduct/CategoryProducts"
+import Heading from "../../components/Heading";
+
 const Product = () => {
   const { productId } = useParams();
   const dispatch = useDispatch();
@@ -24,6 +28,25 @@ const Product = () => {
   } = useSelector((state) => state.productDetails);
   const colors = ["#aec6cf", "#ff6961"];
   const sizes = ["XS", "S", "M", "L", "XL"];
+  const [category,setCategory] = useState("")
+  
+  useEffect(()=>{
+    if(productDetails){
+      setCategory(productDetails.category)
+    }
+  },[productDetails])
+  
+  const [categoryItems,setCategoryItems] = useState([]);
+
+  useEffect(()=>{
+    const fetchCategoryItems = async()=>{
+        const items = await axios.get(`https://fakestoreapi.com/products/category/${category}`)
+        setCategoryItems(items.data);
+        console.log(items.data)
+    }
+    fetchCategoryItems();
+
+  },[category])
 
   useEffect(() => {
     dispatch(fetchProductDetails(productId));
@@ -49,7 +72,7 @@ const Product = () => {
         <div className="flex my-[40px] justify-between  flex-wrap">
           <div className="flex  justify-center items-center mx-auto ">
             <img
-              className="w-[500px] h-[600px] bg-contain "
+              className="md:w-[500px] md:h-[600px] w-[250px] h-[250px] bg-contain "
               src={productDetails.image}
             ></img>
           </div>
@@ -125,7 +148,7 @@ const Product = () => {
                   <div className="px-[34px] py-[8px] text-[20px] flex items-center justify-center border-[1px]  border-black">{count}</div>
                   <button onClick={handleIncrement} className="rounded-r group p-2 border-[1px] border-black border-l-0 hover:bg-red-500 hover:border-red-500"><Plus className="group-hover:invert"/></button>
                 </div>
-                <div className="bg-red-500 px-[48px] text-white flex justify-center items-center font-[500]  rounded text-[16px]">
+                <div className="bg-red-500 px-[24px] md:px-[48px] text-white flex justify-center items-center font-[500]  rounded text-[16px]">
                   Buy Now
                 </div>
                <div className="border rounded flex items-center justify-center "> <a className="px-[4px]"><img className="" height={32} width={32} src={likedIcon}></img></a></div>
@@ -148,6 +171,10 @@ const Product = () => {
             </div>
           </div>
         </div>
+        
+       <Heading title="Related">
+       <CategoryProducts categoryItems={categoryItems} />
+       </Heading>
       </MainpageLayout>
     </>
   );

@@ -24,7 +24,7 @@ const ThisMonth = () => {
   return (
     <div className="flex flex-col  ">
       <Heading title="This Month" description="Best Selling Products ">
-        <div className="flex justify-end ">
+        <div className="flex md:justify-end  justify-center mt-8 md:mt-0  ">
           <Link
             to={"/products"}
             className="bg-[#DB4444] flex justify-center  items-center  px-[48px] py-[16px] text-[16px] rounded font-poppins font-medium text-white"
