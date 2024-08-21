@@ -15,6 +15,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const isLoggedin = useSelector((state) => state.auth.isLoggedin);
   const user = useSelector((state)=>state.auth.user)
+  const errorresponse = useSelector((state)=>state.auth.error)
 
   useEffect(() => {
     if (isLoggedin &user!==null) {
@@ -22,10 +23,25 @@ const Login = () => {
       toast.success("Logged In Successfully");
     }
   }, [isLoggedin,]);
-
+  
+    // useEffect(()=>{
+    //   if(errorresponse){
+    //     toast.error("login failed write correct credentials")
+    //   }
+    // },[errorresponse])
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if(!email||email.trim()===""){
+     setError("email required")
+     toast.error("email required")
+     return
+    }
+    if(!password){
+      setError("password required")
+      toast.error("password required")
+      return
+     }
     dispatch(loginUser({ email, password }));
   };
 
@@ -40,22 +56,25 @@ const Login = () => {
             Log In to Exclusive
           </h2>
 
-          {error && <p>{error}</p>}
+          {error && <p className="text-center text-red-500">{error}</p>}
+          {errorresponse&&<p className="text-center text-red-500">{errorresponse}</p>}
           <p className="text-base">Enter Your Details</p>
           <form
             onSubmit={handleSubmit}
             className="flex flex-col w-full  gap-[2.5rem]"
           >
             <input
-              type="text"
+              type="email"
               className=" signup"
-              placeholder="Email or Phone Number"
+              
+              placeholder="Email "
               onChange={(e) => setEmail(e.target.value)}
             ></input>
             <input
               type="password"
               className="signup"
               placeholder="Password"
+              
               onChange={(e) => setPassword(e.target.value)}
             ></input>
             <div className="flex justify-between gap-[8.5rem]  items-center">

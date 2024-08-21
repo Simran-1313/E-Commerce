@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-const URL = process.env.REACT_APP_API_URL;
+const URL ="https://e-commercebackend-production-fe00.up.railway.app/api/auth/" ;
 
 const register = async (username, email, password) => {
     try{

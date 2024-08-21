@@ -6,7 +6,7 @@ import google from "../images/Icon-Google.png";
 import { useState } from "react";
 
 import authService from "../services/authService";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../state/authSlice";
 import toast from "react-hot-toast";
 
@@ -17,17 +17,32 @@ const SignUp = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const dispatch = useDispatch()
-  
-  const handleSubmit = async (e) => {
+  const errorresponse = useSelector((state)=>state.auth.error)
+
+
+  const handleSubmit = (e) => {
     e.preventDefault();
+    
+    if(!username || username.trim()===""){
+      setError("Name required")
+      toast.error("name required");
+      return
+    }
+
+    if(!email ||email.trim()===""){
+      setError("Email is required")
+      toast.error("email required")
+      return
+    }
+    if(!password){
+      setError("password is required")
+      toast.error("password required")
+      return
+    }
+
     dispatch(registerUser({username,email,password}))
     
-    // try {
-    //   await authService.register(username, email, password);
-    //   setSuccess("Registration successful! You can now log in.");
-    // } catch (err) {
-    //   setError("Failed to register. Please try again.");
-    // }
+    
   };
 
   return (
@@ -48,24 +63,25 @@ const SignUp = () => {
         )} */}
           {error && (
             <div className="my-4 text-center">
-              An error has occured.
-              <br />
-              Please try again Later...
+             {error}
+             {errorresponse&&<p>{errorresponse}</p>}
             </div>
           )}
           <form onSubmit={handleSubmit} className="flex flex-col  w-full gap-[2.5rem]">
             <input
               type="text"
-              value={username}
+              
               className="signup "
               placeholder="Name"
+              
               onChange={(e) => setUsername(e.target.value)}
             ></input>
             <input
               type="email"
-              value={email}
+              
               className="signup "
               placeholder="Email"
+              
               onChange={(e) => setEmail(e.target.value)}
             ></input>
             <input
@@ -73,6 +89,7 @@ const SignUp = () => {
               value={password}
               className="signup"
               placeholder="Password"
+              
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
@@ -101,35 +118,7 @@ const SignUp = () => {
         </div>
       </div>
     </>
-    // <div>
-    //     <h2>Sign Up</h2>
-    //     {error && <p>{error}</p>}
-    //     {success && <p>{success}</p>}
-    //     <form onSubmit={handleSubmit}>
-    //         <input
-    //           type="text"
-    //             placeholder="Username"
-    //             value={username}
-    //             onChange={(e) => setUsername(e.target.value)}
-    //             required
-    //         />
-    //         <input
-    //             type="email"
-    //             placeholder="Email"
-    //             value={email}
-    //             onChange={(e) => setEmail(e.target.value)}
-    //             required
-    //         />
-    //         <input
-    //             type="password"
-    //             placeholder="Password"
-    //             value={password}
-    //             onChange={(e) => setPassword(e.target.value)}
-    //             required
-    //         />
-    //         <button type="submit">Sign Up</button>
-    //     </form>
-    // </div>
+ 
   );
 };
 
