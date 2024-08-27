@@ -4,7 +4,7 @@ import Layout from "../components/Layout";
 import login from "../images/Side Image.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../state/authSlice";
+import { loginUser } from "../state/actions/loginUser";
 import toast from "react-hot-toast";
 
 const Login = () => {
@@ -22,13 +22,13 @@ const Login = () => {
       navigate("/");
       toast.success("Logged In Successfully");
     }
-  }, [isLoggedin,]);
+  }, [isLoggedin]);
   
-    // useEffect(()=>{
-    //   if(errorresponse){
-    //     toast.error("login failed write correct credentials")
-    //   }
-    // },[errorresponse])
+    useEffect(()=>{
+      if(errorresponse){
+        toast.error("login failed write correct credentials")
+      }
+    },[errorresponse])
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -56,8 +56,8 @@ const Login = () => {
             Log In to Exclusive
           </h2>
 
-          {error && <p className="text-center text-red-500">{error}</p>}
-          {errorresponse&&<p className="text-center text-red-500">{errorresponse}</p>}
+          {/* {error && <p className="text-center text-red-500">{error}</p>}
+          {errorresponse&&<p className="text-center text-red-500">{errorresponse}</p>} */}
           <p className="text-base">Enter Your Details</p>
           <form
             onSubmit={handleSubmit}

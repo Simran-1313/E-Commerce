@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { updateItem,removeItem } from "../state/cartProduct";
+import { updateItem,removeItem } from "../state/reducer/products/cartProduct";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import MainpageLayout from "../components/MainpageLayout";
-import { fetchProductDetails } from "../state/productDetailsSlice";
+import Loader from "../components/loader/Loader"
+
 import { useDispatch, useSelector } from "react-redux";
 import img1 from "../Icons/arrow1.png";
 import img2 from "../Icons/arrow2.png";
 import cross from "../Icons/cross.png"
 import { BiCart } from "react-icons/bi";
+import { productsDetails } from "../state/actions/productsDetails";
 
 
 
@@ -24,7 +26,7 @@ const Cart = () => {
   );
  
   useEffect(() => {
-    list.forEach((item) => dispatch(fetchProductDetails(item.productId)));
+    list.forEach((item) => dispatch(productsDetails(item.productId)));
   }, [dispatch,list]);
 
   useEffect(() => {
@@ -114,7 +116,7 @@ const Cart = () => {
               </div>
             </div>
           ) : (<>
-          <div key={item.productId}>Loading...</div>
+          <div key={item.productId}><Loader/></div>
           </>
             
           );

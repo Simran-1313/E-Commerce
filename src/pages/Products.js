@@ -1,16 +1,17 @@
 import React, { useEffect} from "react";
-import {fetchProductsAll} from "../state/productsAllSlice"
+
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../components/card/Card";
 import MainpageLayout from "../components/MainpageLayout";
 import Loader from "../components/loader/Loader";
+import { productsAll } from "../state/actions/productsAll";
 
 const Products = () => {
     const dispatch = useDispatch()
     const {items:products,loading, error} = useSelector((state)=>state.productsAll)
     
     useEffect(()=>{
-      dispatch(fetchProductsAll())
+      dispatch(productsAll())
     },[dispatch])
     if(loading) {
       return (<Loader/>)

@@ -4,16 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import store from './state/store';
+import {store,persistor} from './state/store';
 import { Toaster } from 'react-hot-toast';
+import { PersistGate } from 'redux-persist/integration/react';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
     <Provider store={store}>
         
+    <PersistGate loading={null} persistor={persistor}>
     <App className = "bg-white"  />
     <Toaster/>
+    </PersistGate>
     </Provider>
 );
 

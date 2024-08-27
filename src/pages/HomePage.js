@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {fetchProductsAll} from "../state/productsAllSlice"
+
 import products from "../components/ProductsData.json";
 import Layout from "../components/Layout";
 import HeroSlider from "../components/heroslider/HeroSlider";
@@ -17,13 +17,14 @@ import OurProducts from "../components/ourproducts/OurProducts";
 import Featured from "../components/featured/Featured";
 import EndTags from "../components/EndTags";
 import Loader from "../components/loader/Loader";
+import { productsAll } from "../state/actions/productsAll";
 const Homepage = () => {
   
   const dispatch = useDispatch()
   const {items:products,loading, error} = useSelector((state)=>state.productsAll)
   
   useEffect(()=>{
-    dispatch(fetchProductsAll())
+    dispatch(productsAll())
   },[dispatch])
   
   if (loading) return <Loader/>;
@@ -39,7 +40,7 @@ const Homepage = () => {
               <Sidebar sections={sections} />
             </div>
            
-            <div className=" md:max-w-[85%] w-[100%]  mt-8 md:mt-0  md:mx-auto lg:mx-0 lg:border-l-[1px] border-black/30  md:border-0  flex justify-center md:px-[45px] md:pt-[40px] ">
+            <div className=" md:max-w-[85%]  w-[100%]  mt-8 md:mt-0  md:mx-auto lg:mx-0 lg:border-l-[1px] border-black/30  md:border-0  flex justify-center md:px-[45px] md:pt-[40px] ">
               <HeroSlider />
             </div>
           </div>

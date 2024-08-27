@@ -7,7 +7,7 @@ import { useState } from "react";
 
 import authService from "../services/authService";
 import { useDispatch, useSelector } from "react-redux";
-import { registerUser } from "../state/authSlice";
+import { registerUser } from "../state/actions/registerUser";
 import toast from "react-hot-toast";
 
 const SignUp = () => {

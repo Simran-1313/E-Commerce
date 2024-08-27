@@ -11,7 +11,7 @@ import { MenuToggle } from "./MenuToggle";
 import SmallNavbar from "./SmallNavbar";
 import authService from "../../services/authService";
 import { useDispatch, useSelector } from "react-redux";
-import { logoutUser } from "../../state/authSlice";
+import { logoutUser } from "../../state/actions/logoutUser";
 import toast from "react-hot-toast";
 
 

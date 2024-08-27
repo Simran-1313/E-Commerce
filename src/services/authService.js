@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { persistor } from '../state/store';
 
 
-const URL ="https://e-commercebackend-production-fe00.up.railway.app/api/auth/" ;
+const URL =process.env.REACT_APP_API ;
 
 const register = async (username, email, password) => {
     try{
@@ -37,6 +38,7 @@ catch(e){
 
 const logout = () => {
     localStorage.removeItem('user');
+    persistor.purge()
 };
 
 const authService = {

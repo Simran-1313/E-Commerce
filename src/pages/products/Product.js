@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { fetchProductDetails } from "../../state/productDetailsSlice";
+
 import Layout from "../../components/Layout";
 import MainpageLayout from "../../components/MainpageLayout";
 import StarRating from "../../components/card/StarRating";
@@ -17,6 +17,7 @@ import img2 from "../../Icons/Icon-return.png"
 import Loader from "../../components/loader/Loader";
 import CategoryProducts from "../../components/categoryProduct/CategoryProducts"
 import Heading from "../../components/Heading";
+import { productsDetails } from "../../state/actions/productsDetails";
 
 const Product = () => {
   const { productId } = useParams();
@@ -49,7 +50,7 @@ const Product = () => {
   },[category])
 
   useEffect(() => {
-    dispatch(fetchProductDetails(productId));
+    dispatch(productsDetails(productId));
   }, [dispatch, productId]);
 
   const [selectedColor, setSelectedColor] = useState(colors[0]);

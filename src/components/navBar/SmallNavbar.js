@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import "./style.css"
 import { useDispatch, useSelector } from 'react-redux'
-import { logoutUser } from '../../state/authSlice'
+import { logoutUser } from '../../state/actions/logoutUser'
 import toast from 'react-hot-toast'
 const SmallNavbar = () => {
   const {user} = useSelector((state)=>state.auth)

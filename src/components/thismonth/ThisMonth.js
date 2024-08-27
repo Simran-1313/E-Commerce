@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import Heading from "../Heading";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../../state/productSlice";
+
 import Card from "../card/Card";
 import Img1 from "../../images/Frame 600.png";
 import { Link } from "react-router-dom";
 import img from "../../images/JBL.png";
 import CountDown from "../../components/CountDown";
+import { productsMonths } from "../../state/actions/products";
 const ThisMonth = () => {
   const dispatch = useDispatch();
   const {
@@ -15,7 +16,7 @@ const ThisMonth = () => {
     error,
   } = useSelector((state) => state.products);
   useEffect(() => {
-    dispatch(fetchProducts(4));
+    dispatch(productsMonths(4));
   }, [dispatch]);
 
   console.log(products);

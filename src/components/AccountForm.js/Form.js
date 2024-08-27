@@ -3,7 +3,8 @@ import MainpageLayout from '../MainpageLayout'
 import "./form.css"
 import { useSelector } from 'react-redux';
 const Form = () => {
-  const {user} = useSelector((state)=>state.auth)
+  const {user,isLoggedin} = useSelector((state)=>state.auth)
+
   console.log(user)
   const [formData, setFormData] = useState({
     firstName: '',
@@ -99,7 +100,7 @@ const Form = () => {
   return (
     <>
         <div className='xl:p-[80px] pb-[40px]  pt-[40px] flex flex-col mx-auto '>
-       
+    {isLoggedin&& <h2 className='flex justify-end'>welcome<span className='text-red-500 px-2'> {`${user?.userName}`}</span></h2>}
        <h2 className='mb-[16px] font-medium text-xl text-red-500'>Edit Your Profile </h2>
        <form onSubmit={handleSubmit} className=' flex flex-col  gap-[50px] '>
          <div className='flex   gap-[30px] sm:gap-[50px] flex-wrap w-full'>
@@ -108,7 +109,7 @@ const Form = () => {
            <input
              type="text"
              name="firstName"
-             value={formData.firstName||user?.userName}
+             value={formData.firstName}
              onChange={handleChange}
              placeholder='First Name'
              className='form-input '

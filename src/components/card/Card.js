@@ -7,7 +7,7 @@ import wishlisticon from "../../images/heart small.png";
 import groupicon from "../../images/Quick View.png";
 import "./Card.css";
 import { useNavigate } from "react-router-dom";
-import { addItem } from "../../state/cartProduct";
+import { addItem } from "../../state/reducer/products/cartProduct";
 
 
 
