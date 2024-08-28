@@ -9,12 +9,13 @@ import authReducer from './reducer/user/auth';
 import storage from 'redux-persist/lib/storage';
 import persistReducer from 'redux-persist/es/persistReducer';
 import persistStore from 'redux-persist/es/persistStore';
+import likedProductsReducer from "./reducer/products/likedProducts"
 
 const sagaMiddleware = createSagaMiddleware();
 const persistConfig= {
   key : 'root',
   storage,
-  whitelist:['cartProducts']
+  whitelist:['cartProducts','likedProducts']
 
 }
 const rootReducer = combineReducers({
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
     productDetails: productDetailsReducer,
     productsAll: productsAllReducer,
     cartProducts:cartProductReducer,
-    auth:authReducer
+    auth:authReducer,
+    likedProducts:likedProductsReducer
 });
 const persistedReducer = persistReducer(persistConfig,rootReducer)
 const store = configureStore({

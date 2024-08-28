@@ -9,6 +9,7 @@ import Products from "../pages/Products";
 import Cart from "../pages/Cart";
 import Error from "../pages/Error";
 import Category from "../pages/Category"
+import Wishlist from "../pages/Wishlist";
 
 const routes = [
   { path: "/", component: HomePage },
@@ -20,6 +21,7 @@ const routes = [
   { path: "/products/:productId", component: Product },
   { path: "/products", component: Products },
   { path: "/cart", component: Cart },
+  { path: "/wishlist", component:Wishlist},
   { path: "/category/:category", component: Category},
   { path: "*", component: Error },
 ];

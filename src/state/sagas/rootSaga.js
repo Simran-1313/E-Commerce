@@ -1,4 +1,4 @@
-import { takeLatest } from "redux-saga/effects";
+import { takeLatest,takeEvery } from "redux-saga/effects";
 import { loginUser } from "../actions/loginUser";
 import { logoutUser } from "../actions/logoutUser";
 import { loginUserSaga } from "./user/login";
@@ -16,7 +16,7 @@ export function* watchUserSaga(){
     yield takeLatest(loginUser.type,loginUserSaga);
     yield takeLatest(logoutUser.type,logoutUserSaga);
     yield takeLatest(registerUser.type,signinUserSaga);
-    yield takeLatest(productsDetails.type,productDetailSaga);
+    yield takeEvery(productsDetails.type,productDetailSaga);
     yield takeLatest(productsAll.type,productsAllSaga);
     yield takeLatest(productsMonths.type,productsSaga);
 }

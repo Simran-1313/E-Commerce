@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {motion} from 'framer-motion'
+import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import Banner from "../navBar/Banner";
 import cartIcon from "../../Icons/Cart1.png";
@@ -13,7 +13,6 @@ import authService from "../../services/authService";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../state/actions/logoutUser";
 import toast from "react-hot-toast";
-
 
 const CustomLink = ({ to, className = "", title }) => {
   const router = useLocation();
@@ -77,13 +76,15 @@ function useMenuAnimation(isMenuOpen) {
   return scope;
 }
 
-const Navbar = ({ className}) => {
+const Navbar = ({ className }) => {
+  const { items } = useSelector((state) => state.likedProducts);
+  const cartItems = useSelector((state) => state.cartProducts.items);
   const [isMdScreen, setIsMdScreen] = useState(window.innerWidth >= 850);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdown, setIsDropdown] = useState(false);
-  const {isLoggedin} = useSelector((state)=> state.auth)
+  const { isLoggedin } = useSelector((state) => state.auth);
   const navigation = useLocation();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const scope = useMenuAnimation(isMenuOpen);
 
   useEffect(() => {
@@ -99,14 +100,10 @@ const Navbar = ({ className}) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const handleLogout = ()=>{
-     dispatch(logoutUser());
-     toast.success("Logged Out Successfully")
-     
-
-
-
-  }
+  const handleLogout = () => {
+    dispatch(logoutUser());
+    toast.success("Logged Out Successfully");
+  };
 
   return (
     <div className=" sticky top-0  bg-white z-10  ">
@@ -145,37 +142,60 @@ const Navbar = ({ className}) => {
                     placeholder="Whats you looking for ?"
                     className="max-w-[243px] lg:w-[210px] xl:w-[250px]    "
                   />
-                  <a>
+                  <Link to={"/wishlist"} className="relative">
                     <img
                       height={32}
                       width={32}
                       src={likedIcon}
                       alt="Wishlist"
-                    />
-                  </a>
-                  <Link to={"/cart"}>
+                    /> {items.length > 0 ? <div className="absolute -top-2 left-4 bg-red-500 text-white text-xs px-2 py-1 rounded-full">
+                      
+                     {items.length}
+                      </div> : null}
+                    
+                  </Link>
+                  <Link to={"/cart"} className="relative">
                     <img height={32} width={32} src={cartIcon} alt="Cart" />
+                    {cartItems.length > 0 ? (
+                      <div className="absolute -top-2 left-4 bg-red-500 text-white text-xs px-2 py-1 rounded-full">
+                        {cartItems.length}
+                      </div>
+                    ) : null}
                   </Link>
                   {/* <Link to={"/MyAccount"}><User /></Link> */}
-                  <div className="relative " onClick={() => setIsDropdown(!isDropdown)}>
+                  <div
+                    className="relative "
+                    onClick={() => setIsDropdown(!isDropdown)}
+                  >
                     <User />
-                    {isDropdown && 
-                    <motion.div className="w-[225px] -z-20 w- p-[18px]  rounded bg-black/50 backdrop-blur-lg shadow-lg  absolute right-[5px] top-12 " 
-                       initial={{opacity:0, y:-150}}
-                       animate={{opacity:1,y:0}}
-                       
-                       transition={{duration: 0.5, ease:'easeInOut'}}
-                    >
-                      <div className="text-white font-poppins gap-[13px] flex flex-col text-[14px]">
-                        <Link to={'/MyAccount'} className=" flex"> Manage My Account</Link>
-                        <div>My Order</div>
-                        <div>My Cancellations</div>
-                        <div>My Reviews</div>
-                        {
-                          isLoggedin?<div className="cursor-pointer" onClick={handleLogout}>Logout</div>:<Link to={'/signup'}>SignUp</Link>
-                        }
-                      </div>
-                    </motion.div>}
+                    {isDropdown && (
+                      <motion.div
+                        className="w-[225px] -z-20 w- p-[18px]  rounded bg-black/50 backdrop-blur-lg shadow-lg  absolute right-[5px] top-12 "
+                        initial={{ opacity: 0, y: -150 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, ease: "easeInOut" }}
+                      >
+                        <div className="text-white font-poppins gap-[13px] flex flex-col text-[14px]">
+                          <Link to={"/MyAccount"} className=" flex">
+                            {" "}
+                            Manage My Account
+                          </Link>
+                          <div>My Order</div>
+                          <div>My Cancellations</div>
+                          <div>My Reviews</div>
+                          {isLoggedin ? (
+                            <div
+                              className="cursor-pointer"
+                              onClick={handleLogout}
+                            >
+                              Logout
+                            </div>
+                          ) : (
+                            <Link to={"/signup"}>SignUp</Link>
+                          )}
+                        </div>
+                      </motion.div>
+                    )}
                   </div>
                 </>
               ) : (
