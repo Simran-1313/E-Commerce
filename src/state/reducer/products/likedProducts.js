@@ -10,10 +10,12 @@ const likedProducts = createSlice({
     reducers:{
         addLikedItem:(state,action)=>{
             
-            const newitem = action.payload;
             
-                state.items.push(newitem)
-                console.log(state.items);
+            const newitem = action.payload;
+      if (!state.items.includes(newitem)) {
+        state.items.push(newitem);
+      }
+                
             
         },
         removeLikedItem:(state,action)=>{

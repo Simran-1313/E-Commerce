@@ -10,8 +10,6 @@ const Sidebar = ({sections}) => {
   };
 
 
-  
-console.log(sections)
   return (
     <div className='w-[217px] h-auto md:text-[16px] text-[12px]   flex flex-col gap-[8px] lg:gap-[16px]'>
     {sections.map((category, index) => (

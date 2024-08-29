@@ -2,7 +2,7 @@ import React from "react";
 
 
 const Footer = ({footerData}) => {
-  console.log(footerData);
+  
   return (
     <div className="bg-black   text-[#FAFAFA] pt-[5rem]  md:px-[8.5rem] px-8">
       <div className="flex w-full max-w-[1440px] xl:px-[8.5rem]  lg:px-[3.5rem] md:px-[3rem]  mx-auto  flex-wrap justify-between gap-[40px]">

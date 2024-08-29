@@ -14,7 +14,7 @@ import { addLikedItem, removeLikedItem } from "../../state/reducer/products/like
 
 
 
-const Card = ({ product ,isDelete = false}) => {
+const Card = ({ product ,isDelete = false,handleDispatch}) => {
   
   const dispatch = useDispatch()
   const [liked,setLiked]= useState(false)
@@ -39,13 +39,13 @@ const Card = ({ product ,isDelete = false}) => {
   },[id,likedItems])
 
   const handleLike=(id)=>{
-    setLiked(!liked);
+   
     if (liked) {
       dispatch(removeLikedItem(id));
     } else {
       dispatch(addLikedItem(id));
     }
-    
+    setLiked(!liked);
   }
   const clickHandler = (id)=>{
     const newItem = {
@@ -58,7 +58,7 @@ const Card = ({ product ,isDelete = false}) => {
   }
   const handleRemove= (id)=>{
     console.log(id);
-    dispatch(removeLikedItem(id))
+    handleDispatch(id)
     
   }
 
